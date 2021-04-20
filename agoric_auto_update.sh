@@ -1,7 +1,7 @@
 #!/bin/bash
 
 currentChainVersion=$(curl 'http://localhost:26657/status?' | jq '.result.node_info.network')
-networkChainVersion=$(curl 'https://testnet.agoric.net/network-config' | jq '.chainName') | tr -d \"
+networkChainVersion=$(curl 'https://testnet.agoric.net/network-config' | jq '.chainName')
 # | tr -d \"
 
 #Difference check chainName
