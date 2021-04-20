@@ -7,7 +7,7 @@ networkChainVersion=$(curl 'https://testnet.agoric.net/network-config' | jq '.ch
 #Difference check chainName
 if [ "$currentChainVersion" != "$networkChainVersion" ]
 then
-service ag-chain-cosmos stop
+systemctl stop ag-chain-cosmos
 cd $HOME
 rm -rf agoric-sdk
 git clone https://github.com/Agoric/agoric-sdk -b $networkChainVersion | tr -d \"
@@ -23,7 +23,7 @@ peers=$(jq '.peers | join(",")' < chain.json)
 seeds=$(jq '.seeds | join(",")' < chain.json)
 sed -i.bak 's/^log_level/# log_level/' $HOME/.ag-chain-cosmos/config/config.toml
 sed -i.bak -e "s/^seeds *=.*/seeds = $seeds/; s/^persistent_peers *=.*/persistent_peers = $peers/" $HOME/.ag-chain-cosmos/config/config.toml
-service ag-chain-cosmos start
+systemctl start ag-chain-cosmos
 else
 fi
 
