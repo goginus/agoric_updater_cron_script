@@ -2,7 +2,7 @@
 
 currentChainVersion=$(curl 'http://localhost:26657/status?' | jq '.result.node_info.network')
 networkChainVersion=$(curl 'https://testnet.agoric.net/network-config' | jq '.chainName') | tr -d \"
-
+# | tr -d \"
 
 #Difference check chainName
 if [ "$currentChainVersion" != "$networkChainVersion" ]
