@@ -9,9 +9,9 @@ if [ "$currentChainVersion" != "$networkChainVersion" ]
 then
 systemctl stop ag-chain-cosmos
 cd $HOME
-rm -rf agoric-sdk
+rm -rf $HOME/agoric-sdk
 git clone https://github.com/Agoric/agoric-sdk -b $networkChainVersion | tr -d \"
-cd agoric-sdk
+cd $HOME/agoric-sdk
 yarn install
 yarn build
 (cd packages/cosmic-swingset && make)
