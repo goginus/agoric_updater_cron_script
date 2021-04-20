@@ -1,7 +1,7 @@
 #!/bin/bash
 
 currentChainVersion=$(curl 'http://localhost:26657/status?' | jq '.result.node_info.network')
-networkChainVersion=$(curl 'https://testnet.agoric.net/network-config' | jq '.chainName')
+networkChainVersion=$(curl 'https://testnet.agoric.net/network-config' | jq '.chainName') | tr -d \"
 
 
 #Difference check chainName
@@ -10,7 +10,7 @@ then
 service ag-chain-cosmos stop
 cd $HOME
 rm -rf agoric-sdk
-git clone https://github.com/Agoric/agoric-sdk -b $networkChainVersion | tr -d \"
+git clone https://github.com/Agoric/agoric-sdk -b $networkChainVersion
 cd agoric-sdk
 yarn install
 yarn build
