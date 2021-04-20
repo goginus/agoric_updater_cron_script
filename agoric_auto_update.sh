@@ -10,7 +10,7 @@ then
 service ag-chain-cosmos stop
 cd $HOME
 rm -rf agoric-sdk
-git clone https://github.com/Agoric/agoric-sdk -b $networkChainVersion
+git clone https://github.com/Agoric/agoric-sdk -b $networkChainVersion | tr -d \"
 cd agoric-sdk
 yarn install
 yarn build
